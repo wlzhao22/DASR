@@ -1,0 +1,40 @@
+arch: Resnet50
+cuda_device: 0,
+imagenet_mean: [123.68, 116.78, 103.94]
+test_transform:
+  image_size: [480, 720]
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+model_name:
+  _name: peak_response_mapping
+  backbone:
+    _name: fc_resnet50
+model:
+  win_size: 3
+  sub_pixel_locating_factor: 1
+  enable_peak_stimulation: true
+
+
+# need to use your file path here
+Ins160_path: path_to_Instance-160
+Ins335_path: path_to_Instance-335
+INSTRE_path: path_to_INSTRE
+Ins160_qry_path: path_to_query_path_of_Instance-160
+img_path: your_image_path
+feature_save_path: your_feature_save_path
+
+# parameter you could choose
+detect_mode: single # para_choose: dataset / test
+feature_save: False # para_choose: True
+plt_mode: show  # para_choose: save / none
+display_mode: rectangle # para_choose: response_map
+dataset: Ins160 # para_choose: Ins335 / INSTRE
+transform_mode: ImageNet # para_choose: Ins160 / single / Ins335 / DASR_hcxiao / instre
+model_select: ref # para_choose: qry
+use_nms: False # para_choose: True
+use_DASR*: False # para_choose: True
+use_rank: False # para_choose: True
+backbone: res50 # para_choose: swav
+feature_map_pooling: True # para_choose: False
+
+
